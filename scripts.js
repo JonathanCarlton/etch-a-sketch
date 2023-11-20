@@ -2,9 +2,9 @@ let containerDiv = document.querySelector(".container");
 
 function createEmptyDivs(numberOfDivs, target){
     for (let i = 0; i < numberOfDivs; i++){
-        // create
-        let div = document.createElement("div");
-        target.appendChild(div);
+        let squareDiv = document.createElement("div");
+        squareDiv.classList.add("square");
+        target.appendChild(squareDiv);
     }
 }
 
@@ -16,3 +16,9 @@ for (let i = 0; i < 16; i++){
     createEmptyDivs(16, newRowDiv);
     containerDiv.appendChild(newRowDiv);
 }
+
+containerDiv.addEventListener("mouseover", (event) => {
+    if(event.target.classList.contains("square")){
+        event.target.classList.add("fill");
+    }
+})
