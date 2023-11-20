@@ -22,6 +22,12 @@ function createGrid(gridSize){
     }
 }
 
+function removeGrid(target){
+    while (target.firstChild){
+        target.removeChild(target.firstChild);
+    }
+}
+
 
 containerDiv.addEventListener("mouseover", (event) => {
     if(event.target.classList.contains("square")){
@@ -32,7 +38,13 @@ containerDiv.addEventListener("mouseover", (event) => {
 document.addEventListener("click", (event) => {
     if(event.target === generateGridButton){
         // prompt user for input
-        gridSize = prompt("How many squares per side of grid?");
+        let gridSize = prompt("How many squares per side of grid? min: 1, max: 100");
+        while (gridSize <= 0 || gridSize > 100) {
+            gridSize = prompt("Please enter a valid number for your desired grid size. min: 1, max: 100.");
+        }
+        // remove existing grid
+        removeGrid(containerDiv);
+        
         // use input to create grid
         createGrid(gridSize);
 
